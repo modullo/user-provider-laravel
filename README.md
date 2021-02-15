@@ -1,2 +1,2 @@
 # laravel-compat
-Dorcas Laravel Compat Library
+Modullo Laravel Compat Library

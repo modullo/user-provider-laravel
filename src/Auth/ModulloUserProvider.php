@@ -50,7 +50,7 @@ class ModulloUserProvider implements UserProvider
      */
     public function retrieveById($identifier)
     {
-        /*$apiAuthToken = Cache::get('dorcas.auth_token.'.$identifier, null);
+        /*$apiAuthToken = Cache::get('modullo.auth_token.'.$identifier, null);
         if (!empty($apiAuthToken)) {
             $this->sdk->setAuthorizationToken($apiAuthToken);
         }*/
@@ -76,7 +76,7 @@ class ModulloUserProvider implements UserProvider
      */
     public function retrieveByToken($identifier, $token)
     {
-        /*$apiAuthToken = Cache::get('dorcas.auth_token.'.$identifier, null);
+        /*$apiAuthToken = Cache::get('modullo.auth_token.'.$identifier, null);
         if (!empty($apiAuthToken)) {
             $this->sdk->setAuthorizationToken($apiAuthToken);
         }*/
@@ -106,7 +106,7 @@ class ModulloUserProvider implements UserProvider
      */
     public function updateRememberToken(Authenticatable $user, $token)
     {
-        /*$apiAuthToken = Cache::get('dorcas.auth_token.'.$user->getAuthIdentifier(), null);
+        /*$apiAuthToken = Cache::get('modullo.auth_token.'.$user->getAuthIdentifier(), null);
         if (!empty($apiAuthToken)) {
             $this->sdk->setAuthorizationToken($apiAuthToken);
         }*/
@@ -140,7 +140,7 @@ class ModulloUserProvider implements UserProvider
         # get the actual user data
         Cookie::queue('store_id', $user['id'], 24 * 60);
         # set the user id cookie
-        Cache::put('dorcas.auth_token.'.$user['id'], $token, 24 * 60);
+        Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60);
         # save the auth token to the cache
         if (!empty($response->meta)) {
             $user = array_merge($user, ['meta' => $response->meta]);
@@ -174,7 +174,7 @@ class ModulloUserProvider implements UserProvider
         # get the actual user data
         Cookie::queue('store_id', $user['id'], 24 * 60);
         # set the user id cookie
-        Cache::put('dorcas.auth_token.'.$user['id'], $token, 24 * 60);
+        Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60);
         # save the auth token to the cache
         if (!empty($response->meta)) {
             $user = array_merge($user, ['meta' => $response->meta]);
