@@ -1,10 +1,10 @@
 <?php
 
-namespace Hostville\Modullo\LaravelCompat;
+namespace Hostville\Modullo\UserLaravel;
 
 
-use Hostville\Modullo\LaravelCompat\Auth\ModulloUser;
-use Hostville\Modullo\LaravelCompat\Auth\modulloUserProvider;
+use Hostville\Modullo\UserLaravel\Auth\ModulloUser;
+use Hostville\Modullo\UserLaravel\Auth\modulloUserProvider;
 use Hostville\Modullo\Sdk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;

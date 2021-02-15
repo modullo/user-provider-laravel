@@ -1,6 +1,6 @@
 <?php /** @noinspection ALL */
 
-namespace Hostville\Modullo\LaravelCompat\Auth;
+namespace Hostville\Modullo\UserLaravel\Auth;
 
 
 use Hostville\Modullo\modulloResponse;

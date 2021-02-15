@@ -1,6 +1,6 @@
 <?php
 
-namespace Hostville\Modullo\LaravelCompat\Auth;
+namespace Hostville\Modullo\UserLaravel\Auth;
 
 
 use Hostville\modullo\Sdk;

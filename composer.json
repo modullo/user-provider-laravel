@@ -13,9 +13,8 @@
   ],
   "require": {
     "php": ">=7.2",
-    "illuminate/auth": "^6.0.0",
-    "modullo/sdk-php-laravel": "@dev",
-    "illuminate/notifications": "^6.0.0"
+    "illuminate/auth": "^8.0.0",
+    "modullo/sdk-php-laravel": "@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "^6"
