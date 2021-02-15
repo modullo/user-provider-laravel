@@ -1,0 +1,59 @@
+<?php
+
+namespace Hostville\Modullo\LaravelCompat;
+
+
+use Hostville\Modullo\LaravelCompat\Auth\ModulloUser;
+use Hostville\Modullo\LaravelCompat\Auth\modulloUserProvider;
+use Hostville\Modullo\Sdk;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\ServiceProvider;
+
+class ModulloServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap required services
+     */
+    public function boot()
+    {
+        // publish the config file
+        $this->publishes([
+            __DIR__.'/config/modullo-api.php' => config_path('modullo-api.php'),
+        ]);
+
+        // check if the Sdk has already been added to the container
+        if (!$this->app->has(Sdk::class)) {
+            $tokenStoreId = Cookie::get('store_id');
+            /**
+             * modullo SDK
+             */
+            $this->app->singleton(Sdk::class, function ($app) use ($tokenStoreId) {
+                $token = !empty($tokenStoreId) ? Cache::get('modullo.auth_token.'.$tokenStoreId, null) : null;
+                # get the token from the cache, if available
+                $config = $app->make('config');
+                # get the configuration object
+                $config = [
+                    'environment' => $config->get('modullo-api.env'),
+                    'credentials' => [
+                        'id' => $config->get('modullo-api.client.id'),
+                        'secret' => $config->get('modullo-api.client.secret'),
+                        'token' => $token
+                    ]
+                ];
+                return new Sdk($config);
+            });
+        }
+        // add the modullo API user provider
+        $this->app->when(ModulloUser::class)
+                    ->needs(Sdk::class)
+                    ->give(function () {
+                        return $this->app->make(Sdk::class);
+                    });
+        # provide the requirement
+        Auth::provider('modullo', function ($app, array $config) {
+            return new modulloUserProvider($app->make(Sdk::class), $config);
+        });
+    }
+}

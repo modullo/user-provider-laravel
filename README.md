@@ -1,2 +1,2 @@
-# user-provider-laravel
-Module Laravel User Provider
+# laravel-compat
+Dorcas Laravel Compat Library

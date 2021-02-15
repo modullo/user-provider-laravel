@@ -1,0 +1,35 @@
+{
+  "name": "modullo/user-laravel",
+  "homepage": "https://modullo.io",
+  "description": "Built to make modullo work seamlessly with Laravel",
+  "keywords": ["modullo","business","sdk","invoicing", "laravel"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ayotomide Aina",
+      "homepage": "https://github.com/tomideo1"
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "illuminate/auth": "^6.0.0",
+    "modullo/sdk-php-laravel": "@dev",
+    "illuminate/notifications": "^6.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hostville\\Modullo\\UserLaravel\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Hostville\\Modullo\\UserLaravel\\ModulloServiceProvider"
+      ]
+    }
+  }
+}
