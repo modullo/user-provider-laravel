@@ -3,7 +3,7 @@
 namespace Hostville\Modullo\UserLaravel\Auth;
 
 
-use Hostville\modullo\Sdk;
+use Hostville\Modullo\Sdk;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Support\Arrayable;
@@ -52,28 +52,28 @@ class ModulloUser extends GenericUser implements Arrayable, \JsonSerializable
         return $this->sdk;
     }
 
-    /**
-     * Returns the company information, if available.
-     *
-     * @param bool $requestIfNotAvailable request the information from the API if it's not available
-     * @param bool $asObject
-     *
-     * @return array|null|object
-     */
-    public function company(bool $requestIfNotAvailable = true, bool $asObject = false)
-    {
-        if (!array_key_exists('company', $this->attributes) && $requestIfNotAvailable) {
-            $service = $this->sdk->createProfileService();
-            $response = $service->addQueryArgument('include', 'company')->send('get');
-            # make a request to the API
-            if (!$response->isSuccessful()) {
-                return null;
-            }
-            $this->attributes = $response->getData();
-        }
-        $user = $this->attributes['company']['data'] ?? [];
-        return $asObject ? (object) $user : $user;
-    }
+//    /**
+//     * Returns the company information, if available.
+//     *
+//     * @param bool $requestIfNotAvailable request the information from the API if it's not available
+//     * @param bool $asObject
+//     *
+//     * @return array|null|object
+//     */
+//    public function company(bool $requestIfNotAvailable = true, bool $asObject = false)
+//    {
+//        if (!array_key_exists('company', $this->attributes) && $requestIfNotAvailable) {
+//            $service = $this->sdk->createProfileService();
+//            $response = $service->addQueryArgument('include', 'company')->send('get');
+//            # make a request to the API
+//            if (!$response->isSuccessful()) {
+//                return null;
+//            }
+//            $this->attributes = $response->getData();
+//        }
+//        $user = $this->attributes['company']['data'] ?? [];
+//        return $asObject ? (object) $user : $user;
+//    }
 
     /**
      * @inheritdoc
@@ -88,7 +88,7 @@ class ModulloUser extends GenericUser implements Arrayable, \JsonSerializable
      */
     public function routeNotificationForSms()
     {
-        return (string) $this->attributes['phone'] ?? '';
+        return (string)$this->attributes['phone_number'] ?? "";
     }
 
     /**
@@ -111,13 +111,18 @@ class ModulloUser extends GenericUser implements Arrayable, \JsonSerializable
      */
     public function toJson($options = 0)
     {
-        $json = json_encode($this->jsonSerialize(), $options);
-
+      try {
+        $json = json_encode($this->jsonSerialize(), JSON_THROW_ON_ERROR | $options);
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw JsonEncodingException::forModel($this, json_last_error_msg());
+          throw JsonEncodingException::forModel($this, json_last_error_msg());
         }
 
         return $json;
+      }
+      catch (\JsonException $e) {
+      }
+
+
     }
 
     /**

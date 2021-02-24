@@ -16,12 +16,17 @@ class ModulloServiceProvider extends ServiceProvider
     /**
      * Bootstrap required services
      */
+
+
+
     public function boot()
     {
         // publish the config file
         $this->publishes([
             __DIR__.'/config/modullo-api.php' => config_path('modullo-api.php'),
         ]);
+
+
 
         // check if the Sdk has already been added to the container
         if (!$this->app->has(Sdk::class)) {
@@ -53,7 +58,14 @@ class ModulloServiceProvider extends ServiceProvider
                     });
         # provide the requirement
         Auth::provider('modullo', function ($app, array $config) {
-            return new modulloUserProvider($app->make(Sdk::class), $config);
+            return new ModulloUserProvider($app->make(Sdk::class), $config);
         });
+    }
+
+    public function register()
+    {
+      $this->mergeConfigFrom(
+        __DIR__.'/config/enviroments.php', 'modullo-api.enviroments'
+      );
     }
 }
