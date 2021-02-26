@@ -40,11 +40,11 @@ class ModulloServiceProvider extends ServiceProvider
                 $config = $app->make('config');
                 # get the configuration object
                 $config = [
-                    'environment' => $config->get('modullo-api.env'),
                     'credentials' => [
                         'id' => $config->get('modullo-api.client.id'),
                         'secret' => $config->get('modullo-api.client.secret'),
-                        'token' => $token
+                        'token' => $token,
+                        'environment' => $config->get('modullo-api.env'),
                     ]
                 ];
                 return new Sdk($config);

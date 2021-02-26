@@ -109,7 +109,7 @@ class ModulloUser extends GenericUser implements Arrayable, \JsonSerializable
      *
      * @throws \Illuminate\Database\Eloquent\JsonEncodingException
      */
-    public function toJson($options = 0)
+    public function toJson($options = 0): ?string
     {
       try {
         $json = json_encode($this->jsonSerialize(), JSON_THROW_ON_ERROR | $options);

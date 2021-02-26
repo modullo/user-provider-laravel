@@ -177,7 +177,7 @@ class ModulloUserProvider implements UserProvider
     if (!$response->isSuccessful()) {
       return null;
     }
-    $user = $response->getData();
+    $user = $response->getData()['user'];
     # get the actual user data
     Cookie::queue('store_id', $user['id'], 24 * 60);
     # set the user id cookie
