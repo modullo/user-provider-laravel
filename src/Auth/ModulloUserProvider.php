@@ -151,6 +151,7 @@ class ModulloUserProvider implements UserProvider
       $user = array_merge($user, ['meta' => $response->meta]);
     }
     return new modulloUser($user, $this->sdk);
+
   }
 
   /**

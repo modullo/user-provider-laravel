@@ -18,7 +18,7 @@ class ModulloUser extends GenericUser implements Arrayable, \JsonSerializable
     private $sdk;
 
     /**
-     * modulloUser constructor.
+     * ModulloUser constructor.
      *
      * @param array    $attributes
      * @param Sdk|null $sdk
