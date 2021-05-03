@@ -20,7 +20,7 @@ class ModulloUserProvider implements UserProvider
   private $config;
 
   /**
-   * modulloUserProvider constructor.
+   * ModulloUser()Provider constructor.
    *
    * @param Sdk        $sdk
    * @param array|null $config
@@ -65,7 +65,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $data = array_merge($data, ['meta' => $response->meta]);
     }
-    return new modulloUser($data, $this->sdk);
+    return new ModulloUser($data, $this->sdk);
   }
 
   /**
@@ -96,7 +96,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $data = array_merge($data, ['meta' => $response->meta]);
     }
-    return new modulloUser($data, $this->sdk);
+    return new ModulloUser($data, $this->sdk);
   }
 
   /**
@@ -150,7 +150,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $user = array_merge($user, ['meta' => $response->meta]);
     }
-    return new modulloUser($user, $this->sdk);
+    return new ModulloUser($user, $this->sdk);
 
   }
 
@@ -159,7 +159,7 @@ class ModulloUserProvider implements UserProvider
    *
    * @param array $credentials
    *
-   * @return modulloUser|null
+   * @return ModulloUser()|null
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function retrieveByEmailOnly(array $credentials)
@@ -187,7 +187,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $user = array_merge($user, ['meta' => $response->meta]);
     }
-    return new modulloUser($user, $this->sdk);
+    return new ModulloUser($user, $this->sdk);
 
   }
 
