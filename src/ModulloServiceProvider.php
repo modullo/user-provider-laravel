@@ -9,6 +9,7 @@ use Hostville\Modullo\Sdk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\ServiceProvider;
 
 class ModulloServiceProvider extends ServiceProvider
@@ -30,12 +31,15 @@ class ModulloServiceProvider extends ServiceProvider
 
         // check if the Sdk has already been added to the container
         if (!$this->app->has(Sdk::class)) {
-            $tokenStoreId = Cookie::get('store_id');
+            $userId = Cookie::get('store_id');
+
+
+
             /**
              * modullo SDK
              */
-            $this->app->singleton(Sdk::class, function ($app) use ($tokenStoreId) {
-                $token = !empty($tokenStoreId) ? Cache::get('modullo.auth_token.'.$tokenStoreId, null) : null;
+            $this->app->singleton(Sdk::class, function ($app) use ($userId) {
+                $token = !empty($userId) ? Cache::get('modullo.auth_token.'.$userId, null) : null;
                 # get the token from the cache, if available
                 $config = $app->make('config');
                 # get the configuration object

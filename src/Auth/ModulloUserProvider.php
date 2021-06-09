@@ -136,16 +136,16 @@ class ModulloUserProvider implements UserProvider
     # set the authorization token
     $service = $this->sdk->createProfileService();
     $response = $service
-//          ->addQueryArgument('include', 'company')
       ->send('get');
     if (!$response->isSuccessful()) {
       return null;
     }
     $user = $response->getData()['user'];
     # get the actual user data
-    Cookie::queue('store_id', $user['id'], 24 * 60);
+      Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60);
+
+      Cookie::queue('store_id', $user['id'], 24 * 60);
     # set the user id cookie
-    Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60);
     # save the auth token to the cache
     if (!empty($response->meta)) {
       $user = array_merge($user, ['meta' => $response->meta]);
