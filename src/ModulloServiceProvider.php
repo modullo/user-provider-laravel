@@ -25,7 +25,7 @@ class ModulloServiceProvider extends ServiceProvider
         // publish the config file
         $this->publishes([
             __DIR__.'/config/modullo-api.php' => config_path('modullo-api.php'),
-        ]);
+        ], 'modullo-setup');
 
 
 

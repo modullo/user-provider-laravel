@@ -3,7 +3,7 @@
 namespace Hostville\Modullo\UserLaravel\Auth;
 
 
-use Hostville\Modullo\modulloResponse;
+use Hostville\Modullo\ModulloResponse;
 use Hostville\Modullo\Sdk;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
