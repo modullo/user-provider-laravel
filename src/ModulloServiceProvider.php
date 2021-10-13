@@ -69,7 +69,7 @@ class ModulloServiceProvider extends ServiceProvider
     public function register()
     {
       $this->mergeConfigFrom(
-        __DIR__.'/config/enviroments.php', 'modullo-api.enviroments'
+        __DIR__.'/config/environments.php', 'modullo-api.environments'
       );
     }
 }
