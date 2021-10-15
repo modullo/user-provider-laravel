@@ -1270,12 +1270,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modullo/sdk-php.git",
-                "reference": "488a7e8bcc470cb27d4b8b59d207be962505f709"
+                "reference": "e19fc0e327abc7d37f7401d238dca15c781fe10a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modullo/sdk-php/zipball/488a7e8bcc470cb27d4b8b59d207be962505f709",
-                "reference": "488a7e8bcc470cb27d4b8b59d207be962505f709",
+                "url": "https://api.github.com/repos/modullo/sdk-php/zipball/e19fc0e327abc7d37f7401d238dca15c781fe10a",
+                "reference": "e19fc0e327abc7d37f7401d238dca15c781fe10a",
                 "shasum": ""
             },
             "require": {
@@ -1323,7 +1323,7 @@
                 "issues": "https://github.com/modullo/sdk-php/issues",
                 "source": "https://github.com/modullo/sdk-php/tree/dev"
             },
-            "time": "2021-10-15T13:35:41+00:00"
+            "time": "2021-10-15T13:51:47+00:00"
         },
         {
             "name": "moneyphp/money",
