@@ -130,7 +130,7 @@ class ModulloUserProvider implements UserProvider
     $token = login_via_password($this->sdk, $credentials['email'] ?? '', $credentials['password'] ?? '');
     # we get the authentication token
     if ($token instanceof ModulloResponse) {
-      return $token;
+      return null;
     }
     $this->sdk->setAuthorizationToken($token);
     # set the authorization token
@@ -138,7 +138,7 @@ class ModulloUserProvider implements UserProvider
     $response = $service
       ->send('get');
     if (!$response->isSuccessful()) {
-      return $response;
+      return null;
     }
     $user = $response->getData()['user'];
     # get the actual user data
