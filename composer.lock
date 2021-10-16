@@ -1270,12 +1270,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/modullo/sdk-php.git",
-                "reference": "9df2387e4039fe3c87f5332ef637fd0997e41424"
+                "reference": "0b80d9488577f24a05c032337335ca1ab04e0c7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modullo/sdk-php/zipball/9df2387e4039fe3c87f5332ef637fd0997e41424",
-                "reference": "9df2387e4039fe3c87f5332ef637fd0997e41424",
+                "url": "https://api.github.com/repos/modullo/sdk-php/zipball/0b80d9488577f24a05c032337335ca1ab04e0c7a",
+                "reference": "0b80d9488577f24a05c032337335ca1ab04e0c7a",
                 "shasum": ""
             },
             "require": {
@@ -1323,7 +1323,7 @@
                 "issues": "https://github.com/modullo/sdk-php/issues",
                 "source": "https://github.com/modullo/sdk-php/tree/dev"
             },
-            "time": "2021-10-15T16:17:25+00:00"
+            "time": "2021-10-16T06:50:23+00:00"
         },
         {
             "name": "moneyphp/money",
@@ -5715,6 +5715,7 @@
                 "issues": "https://github.com/sebastianbergmann/resource-operations/issues",
                 "source": "https://github.com/sebastianbergmann/resource-operations/tree/master"
             },
+            "abandoned": true,
             "time": "2015-07-28T20:34:47+00:00"
         },
         {
