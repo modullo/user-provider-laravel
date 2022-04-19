@@ -3,7 +3,7 @@
 namespace Hostville\Modullo\UserLaravel\Auth;
 
 
-use Hostville\Modullo\modulloResponse;
+use Hostville\Modullo\ModulloResponse;
 use Hostville\Modullo\Sdk;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
@@ -20,7 +20,7 @@ class ModulloUserProvider implements UserProvider
   private $config;
 
   /**
-   * modulloUserProvider constructor.
+   * ModulloUserProvider constructor.
    *
    * @param Sdk        $sdk
    * @param array|null $config
@@ -65,7 +65,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $data = array_merge($data, ['meta' => $response->meta]);
     }
-    return new modulloUser($data, $this->sdk);
+    return new ModulloUser($data, $this->sdk);
   }
 
   /**
@@ -96,7 +96,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $data = array_merge($data, ['meta' => $response->meta]);
     }
-    return new modulloUser($data, $this->sdk);
+    return new ModulloUser($data, $this->sdk);
   }
 
   /**
@@ -129,7 +129,7 @@ class ModulloUserProvider implements UserProvider
   {
     $token = login_via_password($this->sdk, $credentials['email'] ?? '', $credentials['password'] ?? '');
     # we get the authentication token
-    if ($token instanceof modulloResponse) {
+    if ($token instanceof ModulloResponse) {
       return null;
     }
     $this->sdk->setAuthorizationToken($token);
@@ -150,7 +150,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $user = array_merge($user, ['meta' => $response->meta]);
     }
-    return new modulloUser($user, $this->sdk);
+    return new ModulloUser($user, $this->sdk);
   }
 
   /**
@@ -158,14 +158,14 @@ class ModulloUserProvider implements UserProvider
    *
    * @param array $credentials
    *
-   * @return modulloUser|null
+   * @return ModulloUser|null
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function retrieveByEmailOnly(array $credentials)
   {
     $token = authorize_via_email_only($this->sdk, $credentials);
     # we get the authentication token
-    if ($token instanceof modulloResponse) {
+    if ($token instanceof ModulloResponse) {
       return null;
     }
     $this->sdk->setAuthorizationToken($token);
@@ -186,7 +186,7 @@ class ModulloUserProvider implements UserProvider
     if (!empty($response->meta)) {
       $user = array_merge($user, ['meta' => $response->meta]);
     }
-    return new modulloUser($user, $this->sdk);
+    return new ModulloUser($user, $this->sdk);
 
   }
 
