@@ -142,10 +142,10 @@ class ModulloUserProvider implements UserProvider
     }
     $user = $response->getData()['user'];
     # get the actual user data
-      Cookie::queue('store_id', $user['id'], 24 * 60);
+      Cookie::queue('store_id', $user['id'], 24 * 60 * 60);
 
 
-      Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60);
+      Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60 * 60);
 
       //dd([$user['id'], Cache::get('modullo.auth_token.'.$user['id'], null)]);
 
@@ -184,9 +184,9 @@ class ModulloUserProvider implements UserProvider
     }
     $user = $response->getData()['user'];
     # get the actual user data
-    Cookie::queue('store_id', $user['id'], 24 * 60);
+    Cookie::queue('store_id', $user['id'], 24 * 60 * 60);
     # set the user id cookie
-    Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60);
+    Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60 * 60);
     # save the auth token to the cache
     if (!empty($response->meta)) {
       $user = array_merge($user, ['meta' => $response->meta]);
