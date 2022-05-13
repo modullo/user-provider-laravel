@@ -147,6 +147,8 @@ class ModulloUserProvider implements UserProvider
 
       Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60);
 
+      //dd([$user['id'], Cache::get('modullo.auth_token.'.$user['id'], null)]);
+
     # set the user id cookie
     # save the auth token to the cache
     if (!empty($response->meta)) {

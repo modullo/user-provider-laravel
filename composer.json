@@ -31,7 +31,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Hostville\\Modullo\\UserLaravel\\ModulloServiceProvider"
+        "Hostville\\Modullo\\UserLaravel\\ModulloUserLaravelServiceProvider"
       ]
     }
   }

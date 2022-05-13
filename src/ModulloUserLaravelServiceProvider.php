@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\ServiceProvider;
 
-class ModulloServiceProvider extends ServiceProvider
+class ModulloUserLaravelServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap required services
