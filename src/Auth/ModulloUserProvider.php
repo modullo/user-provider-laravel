@@ -121,11 +121,12 @@ class ModulloUserProvider implements UserProvider
    * Retrieve a user by the given credentials.
    *
    * @param  array $credentials
+   * @param  string $module
    *
    * @return \Illuminate\Contracts\Auth\Authenticatable|null
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function retrieveByCredentials(array $credentials)
+  public function retrieveByCredentials(array $credentials, string $module = null )
   {
     $token = login_via_password($this->sdk, $credentials['email'] ?? '', $credentials['password'] ?? '');
     # we get the authentication token
@@ -134,7 +135,12 @@ class ModulloUserProvider implements UserProvider
     }
     $this->sdk->setAuthorizationToken($token);
     # set the authorization token
-    $service = $this->sdk->createProfileService();
+    if ($module == null) {
+      $service = $this->sdk->createProfileService();
+    } elseif ($module == "lms") {
+      $service = $this->sdk->createProfileLMSService();
+    }
+    
     $response = $service
       ->send('get');
     if (!$response->isSuccessful()) {
