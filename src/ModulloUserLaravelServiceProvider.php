@@ -51,6 +51,7 @@ class ModulloUserLaravelServiceProvider extends ServiceProvider
                         'environment' => $config->get('modullo-api.env'),
                     ]
                 ];
+                dd($config);
                 return new Sdk($config);
             });
         }
