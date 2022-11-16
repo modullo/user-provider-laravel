@@ -23,5 +23,13 @@ return [
 
         // the client secret
         'secret' => env('MODULLO_CLIENT_SECRET', '')
+    ],
+    'personal_client' => [
+
+        // the client ID provided to you for use with your app
+        'id' => env('MODULLO_CLIENT_ID_PERSONAL', 0),
+
+        // the client secret
+        'secret' => env('MODULLO_CLIENT_SECRET_PERSONAL', '')
     ]
 ];
