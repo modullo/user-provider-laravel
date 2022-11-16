@@ -3,6 +3,7 @@
 namespace Hostville\Modullo\UserLaravel\Auth;
 
 
+use App\Models\User;
 use Hostville\Modullo\ModulloResponse;
 use Hostville\Modullo\Sdk;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -140,7 +141,7 @@ class ModulloUserProvider implements UserProvider
     } elseif ($module == "lms") {
       $service = $this->sdk->createProfileLMSService();
     }
-    
+
     $response = $service
       ->send('get');
     if (!$response->isSuccessful()) {
@@ -181,7 +182,8 @@ class ModulloUserProvider implements UserProvider
     }
     $this->sdk->setAuthorizationToken($token);
     # set the authorization token
-    $service = $this->sdk->createProfileService();
+//    $service = $this->sdk->createProfileService();
+    $service = $this->sdk->createProfileLMSService();
     $response = $service
 //          ->addQueryArgument('include', 'company')
       ->send('get');
@@ -194,6 +196,16 @@ class ModulloUserProvider implements UserProvider
     # set the user id cookie
     Cache::put('modullo.auth_token.'.$user['id'], $token, 24 * 60 * 60);
     # save the auth token to the cache
+
+    //Backup token for 3rd party api uses
+    $thisUser = User::where('uuid',$user['id'])->first();
+    if (!is_null($thisUser)){
+        $thisUser->update([
+          'store_id' => $user['id'],
+          'core_token' => $token,
+        ]);
+    }
+
     if (!empty($response->meta)) {
       $user = array_merge($user, ['meta' => $response->meta]);
     }
