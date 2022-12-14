@@ -41,9 +41,8 @@ class ModulloUserLaravelServiceProvider extends ServiceProvider
                 # get the token from the cache, if available
                 $config = $app->make('config');
                 # get the configuration object
-/*                if (request()->wantsJson()){
-                    $thisUser = request()->user();
-                    dd(request()->user());
+                if (request()->hasHeader('src') && request()->header('src') === '3p'){
+                    $thisUser = request()->user() ?? request()->user('sanctum');
                     $config = [
                         'credentials' => [
                             'id' => $config->get('modullo-api.personal_client.id'),
@@ -62,16 +61,7 @@ class ModulloUserLaravelServiceProvider extends ServiceProvider
                             'environment' => $config->get('modullo-api.env'),
                         ]
                     ];
-                }*/
-                $config = [
-                    'credentials' => [
-                        'id' => $config->get('modullo-api.client.id'),
-                        'secret' => $config->get('modullo-api.client.secret'),
-                        'token' => $token,
-                        'grant_type'=>'client_credentials',
-                        'environment' => $config->get('modullo-api.env'),
-                    ]
-                ];
+                }
                 return new Sdk($config);
             });
         }
