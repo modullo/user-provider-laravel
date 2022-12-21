@@ -31,5 +31,7 @@ return [
 
         // the client secret
         'secret' => env('MODULLO_CLIENT_SECRET_PERSONAL', '')
-    ]
+    ],
+    'tenant_type' => env('MODULLO_TENANT_TYPE', ''),
+    'tenant_id' => env('MODULLO_TENANT_ID', ''),
 ];
