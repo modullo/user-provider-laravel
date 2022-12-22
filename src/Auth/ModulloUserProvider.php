@@ -130,7 +130,6 @@ class ModulloUserProvider implements UserProvider
   public function retrieveByCredentials(array $credentials, string $module = null )
   {
     $token = login_via_password($this->sdk, $credentials['email'] ?? '', $credentials['password'] ?? '');
-    dd($token);
     # we get the authentication token
     if ($token instanceof ModulloResponse) {
       return null;
