@@ -41,7 +41,7 @@ class ModulloUserLaravelServiceProvider extends ServiceProvider
                 # get the token from the cache, if available
                 $config = $app->make('config');
                 # get the configuration object
-                if (request()->hasHeader('src') && request()->header('src') === '3p'){
+                if (request()->hasHeader('src') && (request()->header('src') === '3p' || request()->header('src') === 'direct')){
                     $thisUser = request()->user() ?? request()->user('sanctum');
                     $config = [
                         'credentials' => [
